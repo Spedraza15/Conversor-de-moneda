@@ -1,7 +1,17 @@
 package com.alura.conversor;
 
-public class program {
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+public class program extends JFrame {
 	
-	
+	public program() {
+
+		JOptionPane jp = new JOptionPane();
+		
+		;
+		
+	}
 
 }
