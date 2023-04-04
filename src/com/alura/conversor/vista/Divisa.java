@@ -1,5 +1,7 @@
 package com.alura.conversor.vista;
 
+import com.alura.conversor.controlador.ValidacionDeCampoException;
+
 import javax.swing.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -9,10 +11,14 @@ import java.util.List;
 public class Divisa {
 
     public static void main(String[] args) {
-        Divisa dv = new Divisa();
+        try {
+            Divisa dv = new Divisa();
+        } catch (ValidacionDeCampoException e) {
+            e.printStackTrace();
+        }
     }
 
-    public Divisa() {
+    public Divisa() throws ValidacionDeCampoException {
 
         //opciones de seleccion
 
@@ -43,13 +49,6 @@ public class Divisa {
         Object[] valores = options.values().toArray();
 
 
-        Object[] opciones = {
-
-                "De Pesos - Dolares", "De Pesos  - Euros", "De Pesos a Libras",
-                "De Pesos a Yen ", "De Pesos a Won Coreano", "De Dolar a Pesos",
-                "De Euro a Pesos", "De Libras a Pesos"
-        };
-
         String opcionSeleccion = (String) JOptionPane.showInputDialog(null, "Selecciona una conversion: ", "Opciones", JOptionPane.INFORMATION_MESSAGE, null, valores, " ");
 
 
@@ -60,17 +59,24 @@ public class Divisa {
 //        JTextField tx = new JTextField();
 
         if (ingreso.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "los campos no pueden estar vacios");
+            try {
+                throw new ValidacionDeCampoException("Los campos no pueden estar vacios");
+            } catch (ValidacionDeCampoException e) {
+                e.printStackTrace();
+            }
         } else {
             try {
                 valoringreso = Double.parseDouble(ingreso);
 
-            } catch (NumberFormatException | NullPointerException e) {
-                JOptionPane.showMessageDialog(null, "Error, el valor ingresado no puede contener letras ni caracteres ");
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                System.out.println("Este campo no puede contener caracteres distintos a numeros");
             }
+
+
         }
 
-
+        if (valoringreso > 0) {
 
             if (opcionSeleccion == listaOpciones.get(0)) {
                 valorresultado = valoringreso / 4700;
@@ -98,28 +104,26 @@ public class Divisa {
 
             JOptionPane.showMessageDialog(null, "tienes: " + numeroFormateado);
 
+        }
 
 
+//            Object[] continuar_salir = {"Continuar", "Salir", "Cancelar"};
+        int panelConfirmacion;
+        panelConfirmacion = JOptionPane.showConfirmDialog(null, "Deseas continuar ? ", "Selecciona una opcion", JOptionPane.YES_NO_CANCEL_OPTION);
 
+        if (panelConfirmacion == JOptionPane.YES_OPTION) {
+            new Divisa();
+        } else if (panelConfirmacion == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(null, "Programa terminado");
+        } else {
+            JOptionPane.showMessageDialog(null, "Programa terminado");
 
-            Object[] continuar_salir = {"Continuar", "Salir"};
-            int panelConfirmacion;
-            panelConfirmacion = JOptionPane.showConfirmDialog(null, "Deseas continuar ? ", "Selecciona una opcion", JOptionPane.YES_NO_CANCEL_OPTION);
-
-            if (panelConfirmacion == JOptionPane.YES_OPTION) {new Divisa();}
-            else if (panelConfirmacion == JOptionPane.NO_OPTION) {
-                System.out.println("Hasta luego!");
-            }
-            else {
-                System.out.println("Programa Finalizado"); }
-
-
-
-
-
-
-//}
 //
+        }
+
+//    public boolean validar(){
+//
+//    }
     }
 }
 

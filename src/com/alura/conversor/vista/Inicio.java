@@ -1,5 +1,7 @@
 package com.alura.conversor.vista;
 
+import com.alura.conversor.controlador.ValidacionDeCampoException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -53,7 +55,7 @@ public abstract class Inicio implements ActionListener {
 //        c.anchor = GridBagConstraints.LINE_START;
 
             panel.add(botonDivisa, c);
-            botonDivisa.addActionListener(actionListener);
+            botonDivisa.addActionListener(abrirDivisa);
 
 
             //btn temperatura
@@ -123,12 +125,15 @@ public abstract class Inicio implements ActionListener {
     }
 
 
-    ActionListener actionListener = new ActionListener() {
+    ActionListener abrirDivisa   = new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        Divisa nuevaventana = new Divisa();
-
+        try {
+            Divisa nuevaventana = new Divisa();
+        } catch (ValidacionDeCampoException ex) {
+            ex.printStackTrace();
+        }
     }
     };
 
