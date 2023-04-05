@@ -22,18 +22,6 @@ public class Divisa {
 
         //opciones de seleccion
 
-        HashMap<Integer, String> options = new HashMap<Integer, String>() {{
-            put(1, "De Pesos - Dolares");
-            put(2, "De Pesos  - Euros");
-            put(3, "De Pesos a Libras");
-            put(4, "De Pesos a Yen");
-            put(5, "De Pesos a Won Coreano");
-            put(6, "De Dolar a Pesos");
-            put(7, "De Euro a Pesos");
-            put(8, "De Libras a Pesos");
-
-        }};
-
         List<String> listaOpciones = new ArrayList<>() {{
             add("De Pesos - Dolares");
             add("De Pesos  - Euros");
@@ -46,17 +34,14 @@ public class Divisa {
         }};
 
 
-        Object[] valores = options.values().toArray();
+        Object[] valores = listaOpciones.toArray();
 
 
         String opcionSeleccion = (String) JOptionPane.showInputDialog(null, "Selecciona una conversion: ", "Opciones", JOptionPane.INFORMATION_MESSAGE, null, valores, " ");
 
-
         String ingreso = JOptionPane.showInputDialog(null, "Ingresa la cantidad de dinero que deseas convertir", "Monedas", JOptionPane.INFORMATION_MESSAGE);
         double valoringreso = 0;
         double valorresultado = 0;
-
-//        JTextField tx = new JTextField();
 
         if (ingreso.isEmpty()) {
             try {

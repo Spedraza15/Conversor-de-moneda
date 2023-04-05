@@ -67,10 +67,11 @@ public abstract class Inicio implements ActionListener {
             c.gridx = 2;
             c.gridy = 1;
             c.insets = new Insets(0, 40, 0, 10);
-//        c.anchor = GridBagConstraints.LINE_END;
+
 
 
             panel.add(botonTemperatura, c);
+            botonTemperatura.addActionListener(abrirTemperatura);
 
             //Texto principal
 
@@ -125,7 +126,7 @@ public abstract class Inicio implements ActionListener {
     }
 
 
-    ActionListener abrirDivisa   = new ActionListener() {
+    ActionListener abrirDivisa = new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -136,6 +137,13 @@ public abstract class Inicio implements ActionListener {
         }
     }
     };
+
+     ActionListener abrirTemperatura = new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+             Temperatura nuevaVentana = new Temperatura();
+         }
+     };
 
 }
 
